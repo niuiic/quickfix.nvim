@@ -13,6 +13,10 @@ require('quickfix').restore_qf(path)
 
 - highlight text in quickfix
 
+## Dependencies
+
+- [niuiic/niuiic-core](https://github.com/niuiic/niuiic-core.nvim)
+
 ## Config
 
 ```lua
