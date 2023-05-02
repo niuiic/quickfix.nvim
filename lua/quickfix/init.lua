@@ -44,6 +44,9 @@ local restore_qf = function(path)
 	end
 	local text = file:read("*a")
 	local qf_list = vim.fn.json_decode(text)
+	if not qf_list then
+		return
+	end
 
 	vim.fn.setqflist(qf_list)
 end
