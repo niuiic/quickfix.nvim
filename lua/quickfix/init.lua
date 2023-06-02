@@ -19,6 +19,16 @@ local store_qf = function(path)
 		return
 	end
 
+	core.lua.list.each(qf_list, function(qf)
+		if qf.bufnr ~= nil and qf.text ~= "" then
+			local success, file_name = pcall(vim.api.nvim_buf_get_name, qf.bufnr)
+			if success then
+				qf.filename = file_name
+			end
+			qf.bufnr = nil
+		end
+	end)
+
 	local directory = get_directory(path)
 	if not core.file.file_or_dir_exists(directory) then
 		vim.cmd("!" .. static.config.create_dir .. " " .. directory)
