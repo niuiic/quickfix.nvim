@@ -1,5 +1,5 @@
 local static = require("quickfix.static")
-local core = require("niuiic-core")
+local core = require("core")
 
 local setup = function(new_config)
 	static.config = vim.tbl_deep_extend("force", static.config, new_config or {})

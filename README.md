@@ -15,7 +15,7 @@ require('quickfix').restore_qf(path)
 
 ## Dependencies
 
-- [niuiic/niuiic-core](https://github.com/niuiic/niuiic-core.nvim)
+- [niuiic/core](https://github.com/niuiic/core.nvim)
 
 ## Config
 
