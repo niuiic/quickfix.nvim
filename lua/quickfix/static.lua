@@ -1,6 +1,5 @@
 local config = {
-	create_dir = "mkdir -p",
-	hl_group = {},
+	highlight = {},
 }
 
 return {
