@@ -8,6 +8,7 @@ local get_directory = function(path)
 	return string.sub(path, 1, string.len(path) - index)
 end
 
+---@param path string
 local store_qf = function(path)
 	local qf_list = vim.fn.getqflist()
 	if #qf_list == 0 then
@@ -38,6 +39,7 @@ local store_qf = function(path)
 	file:close()
 end
 
+---@param path string
 local restore_qf = function(path)
 	if not core.file.file_or_dir_exists(path) then
 		return
