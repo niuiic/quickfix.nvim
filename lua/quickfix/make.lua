@@ -3,7 +3,7 @@ local core = require("core")
 
 local run_make = function(make_config)
 	if not make_config then
-		vim.notify("No make config specified", vim.log.levels.WARN, {
+		vim.notify("No make config available", vim.log.levels.WARN, {
 			title = "Quickfix",
 		})
 		return
@@ -37,13 +37,20 @@ end
 ---@param name string | nil
 local make_qf = function(name)
 	if name then
-		run_make(static.config.make[name])
+		local make_config = static.config.make[name]
+		if not make_config.filter or make_config.filter() then
+			run_make(make_config)
+		else
+			run_make()
+		end
 		return
 	end
 
 	local items = {}
-	for key, _ in pairs(static.config.make) do
-		table.insert(items, key)
+	for key, make_config in pairs(static.config.make) do
+		if not make_config.filter or make_config.filter() then
+			table.insert(items, key)
+		end
 	end
 
 	if table.maxn(items) == 0 then

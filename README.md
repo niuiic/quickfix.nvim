@@ -22,6 +22,7 @@ require('quickfix').make(name)
 ## Dependencies
 
 - [niuiic/core](https://github.com/niuiic/core.nvim)
+- [folke/trouble.nvim](https://github.com/folke/trouble.nvim)(optional). Feature builtin does not support `\n` in text, it's recommended to use trouble instead.
 
 ## Config
 
@@ -34,6 +35,10 @@ local config = {
 		node = {
 			cmd = "node",
 			args = { "index.js" },
+			-- return false means this make config would not work
+			filter = function()
+				return vim.bo.filetype == "javascript"
+			end,
 			-- parse command output and set qf_list
 			-- for basic usage, just copy this function and modify the regex
 			-- note that error messages may come from `output` or `err`
