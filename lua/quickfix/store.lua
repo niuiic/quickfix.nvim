@@ -11,14 +11,11 @@ end
 ---@param path string
 local store_qf = function(path)
 	local qf_list = vim.fn.getqflist()
-	if #qf_list == 0 then
-		return
-	end
 
 	core.lua.list.each(qf_list, function(qf)
-		if qf.bufnr ~= nil and qf.text ~= "" then
-			local success, file_name = pcall(vim.api.nvim_buf_get_name, qf.bufnr)
-			if success then
+		if qf.bufnr ~= nil then
+			local ok, file_name = pcall(vim.api.nvim_buf_get_name, qf.bufnr)
+			if ok then
 				qf.filename = file_name
 			end
 			qf.bufnr = nil
