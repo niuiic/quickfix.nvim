@@ -9,4 +9,5 @@ return {
 	make = require("quickfix.make").make_qf,
 	store = require("quickfix.store").store_qf,
 	restore = require("quickfix.store").restore_qf,
+	remove = require("quickfix.remove").remove_qf,
 }

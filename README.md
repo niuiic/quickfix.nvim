@@ -19,6 +19,13 @@ require('quickfix').restore(path)
 require('quickfix').make(name)
 ```
 
+- remove
+
+```lua
+-- remove qf item
+require('quickfix').remove()
+```
+
 ## Dependencies
 
 - [niuiic/core](https://github.com/niuiic/core.nvim)
