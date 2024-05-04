@@ -29,7 +29,7 @@ require('quickfix').remove()
 ## Dependencies
 
 - [niuiic/core](https://github.com/niuiic/core.nvim)
-- [folke/trouble.nvim](https://github.com/folke/trouble.nvim)(optional). Feature builtin does not support `\n` in text, it's recommended to use trouble instead.
+- [folke/trouble.nvim](https://github.com/folke/trouble.nvim)(optional). Feature builtin does not support `\n` in text, it's recommended to use trouble for previewing quickfix list.
 
 ## Config
 
