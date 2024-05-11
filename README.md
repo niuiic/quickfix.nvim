@@ -2,6 +2,8 @@
 
 Extended functionality for quickfix.
 
+[More neovim plugins](https://github.com/niuiic/awesome-neovim-plugins)
+
 ## Features
 
 - store/restore
