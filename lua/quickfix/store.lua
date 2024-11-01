@@ -1,18 +1,8 @@
-local core = require("core")
-
---- get directory from file path
----@param path string
----@return string
-local get_directory = function(path)
-	local index = string.find(string.reverse(path), "/", 1, true)
-	return string.sub(path, 1, string.len(path) - index)
-end
-
 ---@param path string
 local store_qf = function(path)
 	local qf_list = vim.fn.getqflist()
 
-	core.lua.list.each(qf_list, function(qf)
+	vim.iter(qf_list):each(function(qf)
 		if qf.bufnr ~= nil then
 			local ok, file_name = pcall(vim.api.nvim_buf_get_name, qf.bufnr)
 			if ok then
@@ -22,33 +12,18 @@ local store_qf = function(path)
 		end
 	end)
 
-	local directory = get_directory(path)
-	if not core.file.file_or_dir_exists(directory) then
-		core.file.mkdir(directory)
-	end
-
-	local file = io.open(path, "w+")
-	if not file then
-		return
-	end
-	local text = vim.fn.json_encode(qf_list)
-	file:write(text)
-	file:close()
+	vim.fn.writefile({ vim.fn.json_encode(qf_list) }, path)
 end
 
 ---@param path string
 local restore_qf = function(path)
-	if not core.file.file_or_dir_exists(path) then
+	if not vim.uv.fs_stat(path) then
 		return
 	end
 
-	local file = io.open(path, "r")
-	if not file then
-		return
-	end
-	local text = file:read("*a")
-	local qf_list = vim.fn.json_decode(text)
-	if not qf_list then
+	local text = vim.fn.readfile(path)[1]
+	local ok, qf_list = pcall(vim.fn.json_decode, text)
+	if not ok or not qf_list then
 		return
 	end
 
