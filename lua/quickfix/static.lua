@@ -1,6 +1,3 @@
----@class quickfix.MakeOptions
----
-
 ---@class quickfix.Make
 ---@field cmd string
 ---@field args string[]

@@ -43,7 +43,7 @@ local config = {
 		node = {
 			cmd = "node",
 			args = { "index.js" },
-            -- fields of options
+			-- fields of options
 			-- - cwd: (string) Set the current working directory for the sub-process.
 			-- - env: table<string,string> Set environment variables for the new process. Inherits the
 			--   current environment with `NVIM` set to |v:servername|.
@@ -84,6 +84,7 @@ local config = {
 				for _, line in ipairs(lines) do
 					-- if line match this regex, it should be the start of a new qf_item, or it should be extra info for the previous qf_item
 					local file, line_nr, msg = string.match(line, "^(%S+):(%d+):?(.*)")
+					msg = msg or ""
 					if file and line then
 						if qf_item then
 							table.insert(qf_list, qf_item)
@@ -131,5 +132,4 @@ local config = {
 		end,
 	},
 }
-
 ```
